@@ -10,14 +10,9 @@ var symbols = ["~","`","!","@","#","$","%","^","&","*","(",")","_","-","+","=","
 // Array for numbers
 var numbers = ["1","2","3","4","5","6","7","8","9","0"]
 
-// beginning array
-var emptyArray = []
 
 // Write password to the #password input
 function writePassword() {
-
-  // prompts for password criteria 
-
   // password length (8-128)
   var passwordLength = window.prompt("What is the password length? Should be 8 - 128 characters.");
     var passwordLength = Number(passwordLength);
@@ -28,17 +23,14 @@ function writePassword() {
     else {
       console.log(passwordLength, typeof passwordLength);
     }
-
-
-
   // lowercase?
   var confirmLowerCase = window.confirm("Allow lowercase letters?");
     if (confirmLowerCase) {
-      var lowerCaseAdd = emptyArray.concat(lowerCase);
+      var lowerCaseAdd = lowerCase;
       console.log(lowerCaseAdd);
     }
     else {
-      var lowerCaseAdd = emptyArray
+      var lowerCaseAdd = [];
       console.log(lowerCaseAdd);
     }
   // uppercase?
@@ -73,9 +65,9 @@ function writePassword() {
       var characterPool = numberAdd;
       console.log(characterPool);
     }
-  
-  return;
-  // function to combine arrays
+  // characterPool has the desired array
+
+  generatePassword(characterPool, passwordLength)
   // pick random
 
   var password = generatePassword();
@@ -84,6 +76,13 @@ function writePassword() {
   passwordText.value = password;
 
 }
+
+
+var generatePassword = function(characterPool, passwordLength) {
+  for (var i = 0; i < passwordLength; i++)
+  console.log([i]);
+  return;
+  }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
