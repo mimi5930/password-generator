@@ -11,6 +11,12 @@ var symbols = ["~","`","!","@","#","$","%","^","&","*","(",")","_","-","+","=","
 var numbers = ["1","2","3","4","5","6","7","8","9","0"]
 
 
+function randomNumberGeneration(min, max) {
+  var value = Math.floor(Math.random() * (max - min + 1) + min);
+
+  return value;
+};
+
 // Write password to the #password input
 function writePassword() {
   // password length (8-128)
@@ -80,7 +86,7 @@ function writePassword() {
 
 var generatePassword = function(characterPool, passwordLength) {
   for (var i = 0; i < passwordLength; i++)
-  console.log([i]);
+  
   return;
   }
 
