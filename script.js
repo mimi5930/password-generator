@@ -10,8 +10,8 @@ var symbols = ["~","`","!","@","#","$","%","^","&","*","(",")","_","-","+","=","
 // Array for numbers
 var numbers = ["1","2","3","4","5","6","7","8","9","0"]
 
-// Array to pick from
-var generationOptions = []
+// beginning array
+var emptyArray = []
 
 // Write password to the #password input
 function writePassword() {
@@ -23,44 +23,57 @@ function writePassword() {
     var passwordLength = Number(passwordLength);
     if (passwordLength < 8 || passwordLength > 128 || isNaN(passwordLength)) {
       window.alert("Please enter a number between 8 and 128!");
-      return false;
+      writePassword();
     }
     else {
       console.log(passwordLength, typeof passwordLength);
     }
 
+
+
   // lowercase?
   var confirmLowerCase = window.confirm("Allow lowercase letters?");
     if (confirmLowerCase) {
-      console.log("yes");
+      var lowerCaseAdd = emptyArray.concat(lowerCase);
+      console.log(lowerCaseAdd);
     }
     else {
-      console.log("no");
+      var lowerCaseAdd = emptyArray
+      console.log(lowerCaseAdd);
     }
   // uppercase?
   var confirmUpperCase = window.confirm("Allow UPPERCASE letters?");
     if (confirmUpperCase) {
-      console.log("yes");
+      var upperCaseAdd = lowerCaseAdd.concat(upperCase);
+      console.log(upperCaseAdd);
     } 
     else {
-      console.log("no");
+      var upperCaseAdd = lowerCaseAdd;
+      console.log(upperCaseAdd)
     }
   // numeric?
   var confirmNumeric = window.confirm("Allow numeric values?");
     if (confirmNumeric) {
-      console.log("yes");
+      var numberAdd = upperCaseAdd.concat(numbers);
+      console.log(numberAdd);
     }
     else {
-      console.log("no");
+      var numberAdd = upperCaseAdd;
+      console.log(numberAdd);
     }
   // symbols?
   var confirmSymbol = window.confirm("Allow symbols?");
     if (confirmSymbol) {
-      console.log("yes");
+      var symbolAdd = numberAdd.concat(symbols);
+      console.log(symbolAdd);
+      var characterPool = symbolAdd;
+      console.log(characterPool);
     }
     else {
-      console.log("no");
+      var characterPool = numberAdd;
+      console.log(characterPool);
     }
+  
   return;
   // function to combine arrays
   // pick random
