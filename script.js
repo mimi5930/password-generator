@@ -1,5 +1,6 @@
-// Assignment Code
+// Document elements
 var generateBtn = document.querySelector("#generate");
+var passwordText = document.querySelector("#password");
 
 // Array for lowercase alphabet
 var lowerCase = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
@@ -9,22 +10,17 @@ var upperCase = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P"
 var symbols = ["~","`","!","@","#","$","%","^","&","*","(",")","_","-","+","=","{","[","}","]","|","<",",",">",".","?","/","'",'"',":",","]
 // Array for numbers
 var numbers = ["1","2","3","4","5","6","7","8","9","0"]
+// Array for final password
+var password = [];
 
-
-function randomNumberGeneration(min, max) {
-  var value = Math.floor(Math.random() * (max - min + 1) + min);
-
-  return value;
-};
-
-// Write password to the #password input
 function writePassword() {
-  // password length (8-128)
+  password = [];
+  // password length input
   var passwordLength = window.prompt("What is the password length? Should be 8 - 128 characters.");
     var passwordLength = Number(passwordLength);
     if (passwordLength < 8 || passwordLength > 128 || isNaN(passwordLength)) {
       window.alert("Please enter a number between 8 and 128!");
-      writePassword();
+      return false;
     }
     else {
       console.log(passwordLength, typeof passwordLength);
@@ -71,24 +67,36 @@ function writePassword() {
       var characterPool = numberAdd;
       console.log(characterPool);
     }
-  // characterPool has the desired array
-
-  generatePassword(characterPool, passwordLength)
-  // pick random
-
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
-
+  
+  // generate password using the specifiec length and characterPool array
+  generatePassword(characterPool, passwordLength);
 }
 
 
-var generatePassword = function(characterPool, passwordLength) {
-  for (var i = 0; i < passwordLength; i++)
-  
-  return;
+function generatePassword(characterPool, passwordLength) {
+  console.log(characterPool + "is the character pool at the start of the function");
+  console.log(passwordLength)
+  // loop through the function n times based on length entered
+  for (var i = 0; i < passwordLength; i++) {
+    // choose random number from array
+    var rand = Math.floor(Math.random() * characterPool.length);
+    // add randomized array item to password
+    password.push(characterPool[rand]);
   }
+  console.log(password);
+
+  createPasswordText();
+}
+
+function createPasswordText() {
+  console.log("current password value " + password)
+  // convert password array to string text
+  // var passwordString = password.toString()
+
+  var passwordText = document.querySelector("#password");
+  passwordText.value = password;
+  return;
+}
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
