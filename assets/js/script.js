@@ -13,60 +13,51 @@ var numbers = ["1","2","3","4","5","6","7","8","9","0"]
 // Array for final password
 var password = []
 
+
 function writePassword() {
   // reset password
   resetPassword()
   // password length input
   var passwordLength = window.prompt("What is the password length? Should be 8 - 128 characters.");
+    // change string value to number
     var passwordLength = Number(passwordLength);
+    // validate number value
     if (passwordLength < 8 || passwordLength > 128 || isNaN(passwordLength)) {
       window.alert("Please enter a number between 8 and 128!");
       return false;
-    }
-    else {
-      console.log(passwordLength, typeof passwordLength);
     }
   // lowercase?
   var confirmLowerCase = window.confirm("Allow lowercase letters?");
     if (confirmLowerCase) {
       var lowerCaseAdd = lowerCase;
-      console.log(lowerCaseAdd);
     }
     else {
       var lowerCaseAdd = [];
-      console.log(lowerCaseAdd);
     }
   // uppercase?
   var confirmUpperCase = window.confirm("Allow UPPERCASE letters?");
     if (confirmUpperCase) {
       var upperCaseAdd = lowerCaseAdd.concat(upperCase);
-      console.log(upperCaseAdd);
     } 
     else {
       var upperCaseAdd = lowerCaseAdd;
-      console.log(upperCaseAdd);
     }
   // numeric?
   var confirmNumeric = window.confirm("Allow numeric values?");
     if (confirmNumeric) {
       var numberAdd = upperCaseAdd.concat(numbers);
-      console.log(numberAdd);
     }
     else {
       var numberAdd = upperCaseAdd;
-      console.log(numberAdd);
     }
   // symbols?
   var confirmSymbol = window.confirm("Allow symbols?");
     if (confirmSymbol) {
       var symbolAdd = numberAdd.concat(symbols);
-      console.log(symbolAdd);
       var characterPool = symbolAdd;
-      console.log(characterPool);
     }
     else {
       var characterPool = numberAdd;
-      console.log(characterPool);
     }
   
   // generate password using the specifiec length and characterPool array
@@ -75,8 +66,6 @@ function writePassword() {
 
 
 function generatePassword(characterPool, passwordLength) {
-  console.log(characterPool + "is the character pool at the start of the function");
-  console.log(passwordLength);
   // loop through the function n times based on length entered
   for (var i = 0; i < passwordLength; i++) {
     // choose random number from array
@@ -84,18 +73,19 @@ function generatePassword(characterPool, passwordLength) {
     // add randomized array item to password
     password.push(characterPool[rand]);
   }
-  console.log(password);
   createPasswordText();
 }
 
 function createPasswordText() {
-  console.log("current password value " + password);
+  // turns array into a single string with no spaces or commas
   var passwordJoined = password.join("");
+  // updates passwordText with string
   passwordText.value = passwordJoined;
   return;
 }
 
 function resetPassword() {
+  // set password array to 'empty'
   password = [];
   passwordText.value = password;
   return;
